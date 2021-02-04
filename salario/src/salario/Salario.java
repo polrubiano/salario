@@ -3,8 +3,8 @@ package salario;
 public class Salario {
 
 	private String tipo;
-	private int salarioBase;
-	private int ventasMes;
+	private double salarioBase;
+	private double ventasMes;
 	private int horasExtra;
 
 	Salario() {
@@ -14,35 +14,36 @@ public class Salario {
 		this.horasExtra = 0;
 	}
 	
-	Salario(String tipo, int salarioBase, int ventasMes, int horasExtra){
+	Salario(String tipo, int salarioBase, double ventasMes, int horasExtra){
 		this.tipo = tipo;
 		this.salarioBase = salarioBase;
 		this.ventasMes = ventasMes;
 		this.horasExtra = horasExtra;
 	}
 
-	public float calculaSalarioBruto(String tipo, int ventasMes, int horasExtra) {
-		float salarioBruto = 0;
+	public double calculaSalarioBruto(String tipo, double ventasMes, int horasExtra) {
+		double salarioBruto = 0;
 
 		if (tipo == "vendedor") {
 			this.salarioBase = 1000;
 		} else if (tipo == "encargado") {
 			this.salarioBase = 1500;
 		}
-		if (ventasMes >= 1000) {
+		if (ventasMes >= 1000 && ventasMes < 1500) {
 			this.salarioBase += 100;
-		} else if (ventasMes >= 1500) {
+		}else if (ventasMes >= 1500){
 			this.salarioBase += 200;
 		}
-		this.salarioBase += (horasExtra * 20);
+		int horas = horasExtra*20;
+		this.salarioBase += horas;
 
 		salarioBruto = this.salarioBase;
 
 		return salarioBruto;
 	}
 
-	public float calculaSalarioNeto(float salarioBruto) {
-		float salarioNeto = salarioBruto;
+	public double calculaSalarioNeto(double salarioBruto) {
+		double salarioNeto = salarioBruto;
 
 		if (salarioBruto >= 1000 && salarioBruto < 1500) {
 			salarioNeto -= (salarioBruto * 0.16);
@@ -61,15 +62,15 @@ public class Salario {
 		this.tipo = tipo;
 	}
 
-	public int getSalarioBase() {
+	public double getSalarioBase() {
 		return this.salarioBase;
 	}
 
-	public void setSalarioBase(int salarioBase) {
+	public void setSalarioBase(double salarioBase) {
 		this.salarioBase = salarioBase;
 	}
 
-	public int getVentasMes() {
+	public double getVentasMes() {
 		return this.ventasMes;
 	}
 
